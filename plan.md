@@ -161,3 +161,8 @@
 2. 외곽선 색: 순수 검정→연한 검정(`edgeColor` uniform #3a3a3f).
 3. 편지 위치 z 4.5→4.2.
 4. "To. Goeun" 표지 가시성: 좁은 세로 표지라 한 줄은 가로로 잘려 두 줄("To." / "Goeun")로, 폭 86%에 맞춰 자동 축소되는 큰 폰트(최대 0.40*폭, bold #2a2a30)로 렌더.
+
+### Revision 14 — 2026-07-01 (200일 실사진 반영)
+1. 8번째 D+200 즉석 촬영 슬롯을 실제 200일 사진으로 교체. `Picture/(8) 6월 2일.jpg`(원본 3088x2316, EXIF orientation 6)를 앞 7장과 동일 규격(EXIF 회전 보정 90° CW → 정사각 센터크롭 → 900px → JPEG q72 → base64, 약 101KB)으로 처리해 `CONFIG.photos` 8번째 항목에 임베드.
+2. 해당 항목의 `live:true`(즉석 카메라 촬영 슬롯) 제거 → 고정 사진으로 전환. 렌더 로직이 `if(p.live) 플레이스홀더 else if(p.src) 사진` 순서라 live를 두면 사진이 안 보이므로 제거 필수. 이제 앞 7장처럼 클릭 시 줌인만 동작. label "6월 2일", caption "6월 2일(200일)".
+3. 카메라 입력(`#camFile`)·"사진 저장" 버튼(`#saveBtn`)·capture 관련 코드는 미사용으로 무해하게 남김(liveIdx = CONFIG.photos.findIndex(live) = -1이라 관련 분기 비활성).
